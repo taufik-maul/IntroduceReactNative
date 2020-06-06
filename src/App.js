@@ -6,13 +6,14 @@
  * @flow strict-local
  */
 
-import React from 'react';
+import React, {useState} from 'react';
+import TextField from './component/TextField/TextField';
 import {
+  Platform,
   View,
   SafeAreaView,
   ScrollView,
   Text,
-  TextInput,
   Button,
   Alert,
 } from 'react-native';
@@ -20,32 +21,33 @@ import {
 import styles from './assets/styles';
 
 const App = () => {
+  const [username, setUsername] = useState(Platform.OS === 'ios' ? '' : null);
+  const [firstName, setFirstName] = useState('');
   return (
     <View>
       <SafeAreaView style={styles.container}>
         <ScrollView>
           <Text style={styles.h1}>Login</Text>
           <View style={styles.formWrapper}>
-            <View style={styles.field}>
-              <Text style={styles.label}>Username</Text>
-              <TextInput style={styles.input} />
-            </View>
-            <View style={styles.field}>
-              <Text style={styles.label}>Password</Text>
-              <TextInput
-                textContentType="password"
-                secureTextEntry={true}
-                style={styles.input}
-              />
-            </View>
+            <TextField
+              label="Username"
+              callbackField={(value) => setUsername(value)}
+            />
+            <TextField
+              label="First Name"
+              callbackField={(value) => setFirstName(value)}
+            />
+
             <View style={styles.field}>
               <Button
                 style={styles.primaryButton}
                 color="#fc6f03"
                 title="Login"
-                onPress={() => Alert.alert('Passwordnya Salah Bro !!!')}
               />
             </View>
+
+            <Text>{username}</Text>
+            <Text>{firstName}</Text>
           </View>
         </ScrollView>
       </SafeAreaView>
