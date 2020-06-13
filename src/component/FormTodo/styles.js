@@ -6,6 +6,12 @@ const style = StyleSheet.create({
   },
   field: {
     padding: 10,
+    flex: 1,
+  },
+  fieldGroup: {
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center'
   },
   input: {
     borderBottomWidth: 1,
